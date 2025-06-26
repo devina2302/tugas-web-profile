@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Restoran Sulawesi Utara</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #181818;
+      color: #fff;
+    }
+    .navbar {
+      background: #111;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .navbar-brand {
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: #ffb300 !important;
+      font-size: 1.5rem;
+    }
+    .nav-link {
+      color: #fff !important;
+      font-weight: 500;
+      margin-right: 1rem;
+      transition: color 0.2s;
+    }
+    .nav-link.active, .nav-link:hover {
+      color: #ffb300 !important;
+    }
+    .hero {
+      background: #111 url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiidloo1SOweR9lMf6Zo_iTOCDqLwhh3LYuWrqF54GF3dIx7-H6BmiBErMJADZpAhQvfwcZBUSiYKqSzyFUrbwIjXEKukU8PHs3u8bS-LXTxeua37KZYDi7x-TLbLV-HkRmDJ3fAfCKurUy/s653/Daftar+Makanan+Khas+Sulawesi+Utara+%2528Sulut%2529.png') center/cover no-repeat;
+      min-height: 80vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero-overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.7);
+      z-index: 1;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      color: #fff;
+    }
+    .hero-title {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      letter-spacing: 2px;
+      color: #ffb300;
+    }
+    .hero-desc {
+      font-size: 1.3rem;
+      margin-bottom: 2rem;
+      color: #ffb300;
+    }
+    .btn-utama {
+      background: #ffb300;
+      color: #111;
+      border: none;
+      font-weight: 700;
+      padding: 0.75rem 2.2rem;
+      border-radius: 30px;
+      transition: background 0.2s;
+      font-size: 1.1rem;
+    }
+    .btn-utama:hover {
+      background: #ff8800;
+      color: #fff;
+    }
+    .menu-section {
+      background: #181818;
+      padding: 4rem 0 2rem 0;
+    }
+    .menu-title {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 2.5rem;
+      text-align: center;
+      color: #ffb300;
+    }
+    .card {
+      border: none;
+      border-radius: 18px;
+      background: #222;
+      color: #fff;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+      transition: transform 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 6px 24px rgba(0,0,0,0.13);
+    }
+    .card-title {
+      color: #ffb300;
+      font-weight: 700;
+    }
+    .card-img-top {
+    height: 220px;
+    object-fit: cover;
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
+  }
+    .card-price {
+      color: #ffb300;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-top: 0.5rem;
+    }
+    .about-section {
+      background: #222;
+      color: #fff;
+      padding: 4rem 0 2rem 0;
+    }
+    .about-title {
+      color: #ffb300;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    .footer {
+      background: #111;
+      color: #fff;
+      padding: 2rem 0 1rem 0;
+      text-align: center;
+      margin-top: 3rem;
+    }
+    @media (max-width: 768px) {
+      .hero-title { font-size: 2rem; }
+      .hero-desc { font-size: 1rem; }
+      .menu-title { font-size: 1.3rem; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Sulut Rasa</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#menu">Menu</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#order-menu">Order Menu</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero">
+    <div class="hero-overlay"></div>
+    <div class="container hero-content">
+      <h1 class="hero-title">We Are Sulut Rasa</h1>
+      <p class="hero-desc">Rasakan kelezatan autentik Sulawesi Utara dalam suasana modern dan elegan.</p>
+      <a href="#menu" class="btn btn-utama">Order Now</a>
+    </div>
+  </header>
+
+  <!-- Menu Section -->
+  <section class="menu-section d-none" id="menu">
+    <div class="container">
+      <h2 class="menu-title">Menu Andalan</h2>
+      <div class="row g-4">
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card h-100">
+            <img src="https://thumbs.dreamstime.com/b/top-view-traditional-bubur-manado-tinutuan-manadonese-porridge-bowl-262539151.jpg" class="card-img-top" alt="Tinutuan">
+            <div class="card-body">
+              <h5 class="card-title">Tinutuan (Bubur Manado)</h5>
+              <p class="card-text">Bubur khas Manado dengan sayuran segar, sehat dan lezat, cocok untuk sarapan atau makan siang.</p>
+              <div class="card-price">Rp18.000</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card h-100">
+            <img src="https://resepmamiku.com/wp-content/uploads/2022/06/cakalang-fufu-rica-rica-yscooking-e1681434213206-850x771.jpg" class="card-img-top" alt="Cakalang Fufu">
+            <div class="card-body">
+              <h5 class="card-title">Cakalang Fufu</h5>
+              <p class="card-text">Ikan cakalang asap khas Sulawesi Utara, disajikan dengan sambal dabu-dabu segar.</p>
+              <div class="card-price">Rp28.000</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card h-100">
+            <img src="https://rinaresep.com/wp-content/uploads/2022/02/Ayam-woku.jpg" class="card-img-top" alt="Ayam Woku">
+            <div class="card-body">
+              <h5 class="card-title">Ayam Woku</h5>
+              <p class="card-text">Ayam dimasak dengan bumbu woku pedas dan harum, favorit banyak orang di Sulawesi Utara.</p>
+              <div class="card-price">Rp24.000</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card h-100">
+            <img src="https://img.freepik.com/premium-photo/ikan-nila-goreng-sambal-bawang-popular-indonesian-seafood-dish-fried-fish-with-garlic-sauce_575980-94761.jpg?w=2000" class="card-img-top" alt="Mujair Bakar Woku">
+            <div class="card-body">
+              <h5 class="card-title">Mujair Bakar Woku</h5>
+              <p class="card-text">Ikan mujair segar dibakar dengan bumbu woku khas Sulawesi Utara, pedas dan harum.</p>
+              <div class="card-price">Rp27.000</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card h-100">
+            <img src="https://cms.disway.id/uploads/a55ffa4c3f5f19523aae5c2a3a44d830.jpg" class="card-img-top" alt="Brenebon">
+            <div class="card-body">
+              <h5 class="card-title">Brenebon</h5>
+              <p class="card-text">Sup kacang merah khas Manado dengan daging dan sayuran, gurih dan menghangatkan.</p>
+              <div class="card-price">Rp19.000</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card h-100">
+            <img src="https://helloindonesia.id/wp-content/uploads/2022/04/cakalng.jpg" class="card-img-top" alt="Mie Cakalang">
+            <div class="card-body">
+              <h5 class="card-title">Mie Cakalang</h5>
+              <p class="card-text">Mie khas Manado dengan topping ikan cakalang suwir dan sambal rica-rica.</p>
+              <div class="card-price">Rp22.000</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card h-100">
+            <img src="th29.jpeg" class="card-img-top" alt="Ayam Tuturuga">
+            <div class="card-body">
+              <h5 class="card-title">Ayam Tuturuga</h5>
+              <p class="card-text">Olahan ayam khas Manado ini rasanya gurih sedikit pedas. DItambah aroma harum daun kemangi ayam tuturuga makin sedap aromanya.</p>
+              <div class="card-price">Rp28.000</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card h-100">
+            <img src="th31.jpeg" class="card-img-top" alt="Gohu Manado">
+            <div class="card-body">
+              <h5 class="card-title">Gohu Manado</h5>
+              <p class="card-text">Asinan pepaya khas Manado yang segar dan sangat mudah dibuat, yup, itulah gohu.</p>
+              <div class="card-price">Rp5.000</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card h-100">
+            <img src="th32.jpeg" class="card-img-top" alt="Rica Roa">
+            <div class="card-body">
+              <h5 class="card-title">Rica Roa</h5>
+              <p class="card-text">Rica roa juga termasuk sambal khas Manado yang dibuat dari bahan utama berupa ikan. Sesuai namanya, ikan yang dipilih adalah ikan roa.</p>
+              <div class="card-price">Rp10.000</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card h-100">
+            <img src="th33.jpeg" class="card-img-top" alt="Rica Rodo">
+            <div class="card-body">
+              <h5 class="card-title">Rica Rodo</h5>
+              <p class="card-text"> Rica rodo adalah olahan sayur pedas dan gurih yang menggunakan terung, kacang panjang, dan jagung.</p>
+              <div class="card-price">Rp15.000</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card h-100">
+            <img src="th34.jpeg" class="card-img-top" alt="Sate Kolombi">
+            <div class="card-body">
+              <h5 class="card-title">Sate Kolombi</h5>
+              <p class="card-text">Sate kolombi merupakan sate keong sawah khas Manado yang dimasak dengan bumbu rempah yang gurih dan dibakar di atas panggangan.</p>
+              <div class="card-price">Rp20.000</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-4">
+        <a href="#" class="btn btn-utama">View More</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Order Menu Section -->
+  <section class="menu-section d-none" id="order-menu">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="card shadow-lg border-0 p-4" style="background:#232323; border-radius:24px;">
+            <div class="text-center mb-4">
+              <div style="font-size:2.2rem; color:#ffb300;">
+                <svg xmlns='http://www.w3.org/2000/svg' width='40' height='40' fill='currentColor' class='bi bi-basket' viewBox='0 0 16 16'><path d='M2.31 5.243 8 1.07l5.69 4.172a.5.5 0 0 1-.58.814L8 2.431 2.89 6.057a.5.5 0 1 1-.58-.814z'/><path d='M5.5 6.5a.5.5 0 0 1 .5.5v5a.5.5 0 0 0 1 0v-5a.5.5 0 0 1 1 0v5a.5.5 0 0 0 1 0v-5a.5.5 0 0 1 .5-.5z'/></svg>
+              </div>
+              <h2 class="menu-title mb-1" style="color:#ffb300;">Order Menu</h2>
+              <p class="text-white-50 mb-0">Pesan makanan favorit Anda langsung dari sini.</p>
+            </div>
+            <form>
+              <div class="table-responsive">
+                <table class="table table-dark table-bordered align-middle mb-4" style="border-radius:12px; overflow:hidden;">
+                  <thead>
+                    <tr class="text-center align-middle">
+                      <th style="width:40%">Menu</th>
+                      <th style="width:20%">Harga</th>
+                      <th style="width:20%">Jumlah</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Tinutuan (Bubur Manado)</td>
+                      <td>Rp18.000</td>
+                      <td><input type="number" min="0" class="form-control form-control-lg text-center" name="tinutuan" placeholder="0"></td>
+                    </tr>
+                    <tr>
+                      <td>Cakalang Fufu</td>
+                      <td>Rp28.000</td>
+                      <td><input type="number" min="0" class="form-control form-control-lg text-center" name="cakalang" placeholder="0"></td>
+                    </tr>
+                    <tr>
+                      <td>Ayam Woku</td>
+                      <td>Rp24.000</td>
+                      <td><input type="number" min="0" class="form-control form-control-lg text-center" name="woku" placeholder="0"></td>
+                    </tr>
+                    <tr>
+                      <td>Mujair Bakar Woku</td>
+                      <td>Rp27.000</td>
+                      <td><input type="number" min="0" class="form-control form-control-lg text-center" name="mujair" placeholder="0"></td>
+                    </tr>
+                    <tr>
+                      <td>Brenebon</td>
+                      <td>Rp19.000</td>
+                      <td><input type="number" min="0" class="form-control form-control-lg text-center" name="brenebon" placeholder="0"></td>
+                    </tr>
+                    <tr>
+                      <td>Mie Cakalang</td>
+                      <td>Rp22.000</td>
+                      <td><input type="number" min="0" class="form-control form-control-lg text-center" name="mie_cakalang" placeholder="0"></td>
+                    </tr>
+                    <tr>
+                      <td>Ayam Tuturuga</td>
+                      <td>Rp28.000</td>
+                      <td><input type="number" min="0" class="form-control form-control-lg text-center" name="ayam_tuturuga" placeholder="0"></td>
+                    </tr>
+                    <tr>
+                      <td>Gohu Manado</td>
+                      <td>Rp5.000</td>
+                      <td><input type="number" min="0" class="form-control form-control-lg text-center" name="gohu_manado" placeholder="0"></td>
+                    </tr>
+                    <tr>
+                      <td>Rica Roa</td>
+                      <td>Rp10.000</td>
+                      <td><input type="number" min="0" class="form-control form-control-lg text-center" name="rica_roa" placeholder="0"></td>
+                    </tr>
+                    <tr>
+                      <td>Rica Rodo</td>
+                      <td>Rp15.000</td>
+                      <td><input type="number" min="0" class="form-control form-control-lg text-center" name="rica_rodo" placeholder="0"></td>
+                    </tr>
+                    <tr>
+                      <td>Sate Kolombi</td>
+                      <td>Rp20.000</td>
+                      <td><input type="number" min="0" class="form-control form-control-lg text-center" name="sate_kolombi" placeholder="0"></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="col-12 text-center mt-2">
+                <div id="order-summary" class="mb-2" style="font-weight:600; color:#ffb300;"></div>
+                <button type="submit" class="btn btn-utama btn-lg px-5" id="order-btn">Order Sekarang</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>Location | Call +62 812-3456-7890 | info@sulutrasa.com</p>
+      <p>Everyday 10.00 - 22.00</p>
+      <p>&copy; 2025 Sulut Rasa. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const orderForm = document.querySelector('#order-menu form');
+      orderForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const menuList = [
+          { label: 'Tinutuan (Bubur Manado)', name: 'tinutuan', harga: 18000 },
+          { label: 'Cakalang Fufu', name: 'cakalang', harga: 28000 },
+          { label: 'Ayam Woku', name: 'woku', harga: 24000 },
+          { label: 'Mujair Bakar Woku', name: 'mujair', harga: 27000 },
+          { label: 'Brenebon', name: 'brenebon', harga: 19000 },
+          { label: 'Mie Cakalang', name: 'mie_cakalang', harga: 22000 },
+          { label: 'Ayam Tuturuga', name: 'ayam_tuturuga', harga: 28000 },
+          { label: 'Gohu Manado', name: 'gohu_manado', harga: 5000 },
+          { label: 'Rica Roa', name: 'rica_roa', harga: 10000 },
+          { label: 'Rica Rodo', name: 'rica_rodo', harga: 15000 },
+          { label: 'Sate Kolombi', name: 'sate_kolombi', harga: 20000 },
+        ];
+        let totalItem = 0;
+        let totalHarga = 0;
+        let pesanList = '';
+        menuList.forEach(menu => {
+          const jumlah = +orderForm[menu.name]?.value || 0;
+          if (jumlah > 0) {
+            pesanList += `<li>${menu.label} x ${jumlah} = Rp${(jumlah*menu.harga).toLocaleString('id-ID')}</li>`;
+            totalItem += jumlah;
+            totalHarga += jumlah*menu.harga;
+          }
+        });
+        if (totalItem === 0) {
+          Swal.fire({ icon: 'warning', title: 'Pilih minimal satu menu!', text: 'Silakan isi jumlah pesanan.' });
+          return;
+        }
+        Swal.fire({
+          icon: 'success',
+          title: 'Pesanan Berhasil!',
+          html: `<ul style='text-align:left;'>${pesanList}</ul><hr><b>Total Pesanan:</b> ${totalItem} item<br><b>Total Harga:</b> Rp${totalHarga.toLocaleString('id-ID')}`
+        });
+        orderForm.reset();
+      });
+    });
+  </script>
+  <script>
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href').replace('#', '');
+
+      // Sembunyikan semua section
+      document.querySelectorAll('section').forEach(sec => sec.classList.add('d-none'));
+
+      // Tampilkan section tujuan
+      const targetSection = document.getElementById(targetId);
+      if (targetSection) {
+        targetSection.classList.remove('d-none');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
+  });
+
+  // Tombol "Order Now" di Hero → tampilkan Menu
+  document.querySelector('.hero .btn-utama').addEventListener('click', function(e) {
+    e.preventDefault();
+    document.querySelectorAll('section').forEach(sec => sec.classList.add('d-none'));
+    document.getElementById('menu').classList.remove('d-none');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // Tombol "Read More" di About → tampilkan home
+ const readMoreBtn = document.querySelector('#about .btn-utama');
+if (readMoreBtn) {
+  readMoreBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    // Sembunyikan semua section
+    document.querySelectorAll('section').forEach(sec => sec.classList.add('d-none'));
+    
+    // Scroll ke hero/home
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
+</script>
+</body>
+</html>

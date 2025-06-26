@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Login User</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      padding: 50px;
+    }
+
+    table {
+      margin: auto;
+      padding: 20px;
+      border-collapse: collapse;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    td {
+      padding: 10px;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 8px;
+      box-sizing: border-box;
+    }
+
+    input[type="submit"] {
+      padding: 10px 20px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #2980b9;
+    }
+  </style>
+</head>
+<body>
+
+  <h2 align="center">Login User</h2>
+
+  <form action="c:\Users\USER\Documents\tgs web summer\Untitled-1.html" method="POST">
+    <table>
+      <tr>
+        <td><label for="nim">Registration Number / NIM:</label></td>
+        <td><input type="text" id="nim" name="nim" required></td>
+      </tr>
+      <tr>
+        <td><label for="fullname">Nama Lengkap:</label></td>
+        <td><input type="text" id="fullname" name="fullname" required></td>
+      </tr>
+      <tr>
+        <td><label>Gender:</label></td>
+        <td>
+          <input type="radio" id="male" name="gender" value="Laki-laki" required>
+          <label for="male">Laki-laki</label>
+          <input type="radio" id="female" name="gender" value="Perempuan">
+          <label for="female">Perempuan</label>
+        </td>
+      </tr>
+      <tr>
+        <td><label for="religion">Religion:</label></td>
+        <td>
+          <select id="religion" name="religion" required>
+            <option value="">-- Pilih Agama --</option>
+            <option value="Islam">Islam</option>
+            <option value="Kristen">Kristen</option>
+            <option value="Katolik">Katolik</option>
+            <option value="Hindu">Hindu</option>
+            <option value="Buddha">Buddha</option>
+            <option value="Konghucu">Konghucu</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td><label for="marital_status">Marital Status:</label></td>
+        <td>
+          <select id="marital_status" name="marital_status" required>
+            <option value="">-- Pilih Status --</option>
+            <option value="Belum Menikah">Belum Menikah</option>
+            <option value="Menikah">Menikah</option>
+            <option value="Cerai">Cerai</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td><label for="faculty">Faculty:</label></td>
+        <td>
+          <select id="faculty" name="faculty" required>
+            <option value="">-- Pilih Fakultas --</option>
+            <option value="Fakultas Teknik">Fakultas Teknik</option>
+            <option value="Fakultas Ekonomi">Fakultas Ekonomi</option>
+            <option value="Fakultas Ilmu Komputer">Fakultas Ilmu Komputer</option>
+            <option value="Fakultas Hukum">Fakultas Hukum</option>
+            <option value="Fakultas Kedokteran">Fakultas Kedokteran</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td><label for="username">Username:</label></td>
+        <td><input type="text" id="username" name="username" required></td>
+      </tr>
+      <tr>
+        <td><label for="password">Password:</label></td>
+        <td><input type="password" id="password" name="password" required></td>
+      </tr>
+      <tr>
+        <td colspan="2" align="center">
+          <input type="submit" value="submit">
+        </td>
+      </tr>
+    </table>
+  </form>
+
+</body>
+</html>

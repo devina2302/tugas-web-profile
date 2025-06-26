@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>UNKLAB Registration Form</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #e0f7fa, #fce4ec);
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    .form-container {
+      background: #f8f9fa;
+      border-radius: 20px;
+      padding: 30px;
+      max-width: 900px;
+      margin: auto;
+      box-shadow: 10px 10px 20px #d1d9e6, -10px -10px 20px #ffffff;
+    }
+
+    fieldset {
+      border: none;
+      border-radius: 15px;
+      margin-bottom: 30px;
+      background-color: #ffffff;
+      box-shadow: inset 2px 2px 6px #d1d9e6, inset -2px -2px 6px #ffffff;
+      padding: 20px;
+    }
+
+    legend {
+      font-size: 1.3rem;
+      font-weight: 600;
+      padding: 0 10px;
+      color: #00796b;
+    }
+
+    label {
+      font-weight: 500;
+    }
+
+    .form-control, .form-select {
+      border-radius: 10px;
+      box-shadow: inset 1px 1px 3px #d1d9e6, inset -1px -1px 3px #ffffff;
+      border: 1px solid #ced4da;
+    }
+
+    .btn-custom {
+      border-radius: 25px;
+      padding: 10px 30px;
+      font-weight: 600;
+      background-color: #00796b;
+      color: #fff;
+      border: none;
+      transition: 0.3s;
+    }
+
+    .btn-custom:hover {
+      background-color: #004d40;
+    }
+
+    .checkbox-label {
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="form-container">
+    <h2 class="text-center mb-4 text-primary">UNKLAB New Student Registration</h2>
+    <form>
+
+      <!-- Personal Info -->
+      <fieldset>
+        <legend>👤 Personal Information</legend>
+        <div class="row mb-3">
+          <div class="col-md-4">
+            <label>Registration Number</label>
+            <input type="text" class="form-control">
+          </div>
+          <div class="col-md-4">
+            <label>Full Name</label>
+            <input type="text" class="form-control">
+          </div>
+          <div class="col-md-4">
+            <label>Birthplace</label>
+            <input type="text" class="form-control">
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-md-3">
+            <label>Date of Birth</label>
+            <input type="date" class="form-control">
+          </div>
+          <div class="col-md-3">
+            <label>Gender</label>
+            <select class="form-select">
+              <option>Male</option>
+              <option>Female</option>
+            </select>
+          </div>
+          <div class="col-md-3">
+            <label>Blood Type</label>
+            <select class="form-select">
+              <option>A</option>
+              <option>B</option>
+              <option>AB</option>
+              <option>O</option>
+            </select>
+          </div>
+          <div class="col-md-3">
+            <label>Tribe</label>
+            <input type="text" class="form-control">
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label>Email</label>
+            <input type="email" class="form-control">
+          </div>
+          <div class="col-md-3">
+            <label>Telephone</label>
+            <input type="text" class="form-control">
+          </div>
+          <div class="col-md-3">
+            <label>Mobile</label>
+            <input type="text" class="form-control">
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-md-4">
+            <label>Status</label>
+            <select class="form-select">
+              <option>Single</option>
+              <option>Married</option>
+            </select>
+          </div>
+          <div class="col-md-4">
+            <label>Religion</label>
+            <select class="form-select">
+              <option>Seventh Day Adventist</option>
+              <option>Christian</option>
+              <option>Muslim</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label>Home Address</label>
+          <textarea class="form-control" rows="2"></textarea>
+        </div>
+        <div class="col-md-4 mb-3">
+          <label>Postal Code</label>
+          <input type="text" class="form-control">
+        </div>
+      </fieldset>
+
+      <!-- School Info -->
+      <fieldset>
+        <legend>🏫 School Information</legend>
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label>High School Name</label>
+            <input type="text" class="form-control">
+          </div>
+          <div class="col-md-3">
+            <label>Program</label>
+            <input type="text" class="form-control">
+          </div>
+          <div class="col-md-3">
+            <label>School Phone</label>
+            <input type="text" class="form-control">
+          </div>
+        </div>
+        <div class="mb-3">
+          <label>School Address</label>
+          <textarea class="form-control" rows="2"></textarea>
+        </div>
+        <div class="col-md-4 mb-3">
+          <label>Postal Code</label>
+          <input type="text" class="form-control">
+        </div>
+      </fieldset>
+
+      <!-- Parent Info -->
+      <fieldset>
+        <legend>👨‍👩‍👧 Parent Information</legend>
+        <div class="row mb-3">
+          <div class="col-md-4">
+            <label>Father's Name</label>
+            <input type="text" class="form-control">
+          </div>
+          <div class="col-md-4">
+            <label>Mobile</label>
+            <input type="text" class="form-control">
+          </div>
+          <div class="col-md-4">
+            <label>Email</label>
+            <input type="email" class="form-control">
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-md-3">
+            <label>Education</label>
+            <select class="form-select">
+              <option>Elementary</option>
+              <option>High School</option>
+              <option>University</option>
+            </select>
+          </div>
+          <div class="col-md-3">
+            <label>Religion</label>
+            <select class="form-select">
+              <option>SDA</option>
+              <option>Christian</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+        <hr>
+        <div class="row mb-3">
+          <div class="col-md-4">
+            <label>Mother's Name</label>
+            <input type="text" class="form-control">
+          </div>
+          <div class="col-md-4">
+            <label>Mobile</label>
+            <input type="text" class="form-control">
+          </div>
+          <div class="col-md-4">
+            <label>Email</label>
+            <input type="email" class="form-control">
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- Carer's Info -->
+      <fieldset>
+        <legend>👥 Carer's Information</legend>
+        <div class="row mb-3">
+          <div class="col-md-4">
+            <label>Full Name</label>
+            <input type="text" class="form-control">
+          </div>
+          <div class="col-md-4">
+            <label>Relation</label>
+            <input type="text" class="form-control">
+          </div>
+          <div class="col-md-4">
+            <label>Email</label>
+            <input type="email" class="form-control">
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-md-4">
+            <label>Phone</label>
+            <input type="text" class="form-control">
+          </div>
+          <div class="col-md-4">
+            <label>Education</label>
+            <select class="form-select">
+              <option>Elementary</option>
+              <option>High School</option>
+              <option>University</option>
+            </select>
+          </div>
+          <div class="col-md-4">
+            <label>Religion</label>
+            <select class="form-select">
+              <option>SDA</option>
+              <option>Christian</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- Declaration -->
+      <div class="form-check mb-3">
+        <input class="form-check-input" type="checkbox" id="declaration">
+        <label class="form-check-label checkbox-label" for="declaration">
+          I declare that all the information provided is true and correct.
+        </label>
+      </div>
+
+      <div class="mb-3">
+        <label>Date</label>
+        <input type="date" class="form-control" style="max-width: 250px;">
+      </div>
+
+      <!-- Buttons -->
+      <div class="d-flex justify-content-end">
+        <button type="reset" class="btn btn-outline-secondary me-3">Reset</button>
+        <button type="submit" class="btn btn-custom">Register</button>
+      </div>
+
+    </form>
+  </div>
+
+</body>
+</html>

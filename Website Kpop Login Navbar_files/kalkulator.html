@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Kalkulator Sederhana</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center; /* Bikin kalkulator ada di tengah secara horizontal */
+      align-items: center;      /* Bikin kalkulator di tengah secara vertikal */
+      height: 100vh;            /* Tinggi full 1 layar */
+      background: #1e1e1e;      /* Warna latar hitam gelap */
+    }
+
+    .calculator {
+      background: #2d2d30;      /* Warna latar kotak kalkulator */
+      padding: 20px;            /* Jarak dalam kotak */
+      border-radius: 15px;      /* Biar sudut kotaknya melengkung */
+      box-shadow: 0 0 10px #000; /* Bayangan luar kalkulator */
+      width: 280px;             /* Lebar kalkulator */
+    }
+
+    .display {
+      background: #000;         /* Warna latar display (tempat tampil angka) */
+      color: #fff;              /* Warna teks putih */
+      font-size: 2em;           /* Ukuran huruf besar */
+      padding: 10px;
+      text-align: right;        /* Angka rata kanan */
+      border-radius: 10px;      /* Sudut melengkung */
+      margin-bottom: 15px;
+    }
+
+    .buttons {
+      display: grid;                          /* Gunakan grid buat tombol */
+      grid-template-columns: repeat(4, 1fr);  /* 4 kolom sama lebar */
+      gap: 10px;                              /* Jarak antar tombol */
+    }
+
+    .btn {
+      padding: 20px;               /* Besar tombol */
+      font-size: 1.2em;            /* Ukuran huruf tombol */
+      border: none;
+      border-radius: 10px;
+      background: #3a3a3d;         /* Warna tombol biasa */
+      color: white;
+      cursor: pointer;
+    }
+
+    .btn.operator {
+      background: #ff7f50;         /* Warna tombol operator (+, -, dll) */
+      color: white;
+    }
+
+    .btn.ce {
+      background: #5a5a5a;         /* Warna tombol CE */
+    }
+
+    .btn.equal {
+      background: #ff4500;         /* Warna tombol sama dengan (=) */
+    }
+  </style>
+</head>
+<body>
+
+<!-- Kotak utama kalkulator -->
+<div class="calculator">
+  <!-- Tempat tampilin angka -->
+  <div id="display" class="display">0</div>
+  
+  <!-- Kumpulan tombol angka dan operator -->
+  <div class="buttons">
+    <!-- Baris pertama -->
+    <button class="btn" onclick="appendNumber('7')">7</button>
+    <button class="btn" onclick="appendNumber('8')">8</button>
+    <button class="btn" onclick="appendNumber('9')">9</button>
+    <button class="btn operator" onclick="setOperator('/')">÷</button>
+
+    <!-- Baris kedua -->
+    <button class="btn" onclick="appendNumber('4')">4</button>
+    <button class="btn" onclick="appendNumber('5')">5</button>
+    <button class="btn" onclick="appendNumber('6')">6</button>
+    <button class="btn operator" onclick="setOperator('*')">×</button>
+
+    <!-- Baris ketiga -->
+    <button class="btn" onclick="appendNumber('1')">1</button>
+    <button class="btn" onclick="appendNumber('2')">2</button>
+    <button class="btn" onclick="appendNumber('3')">3</button>
+    <button class="btn operator" onclick="setOperator('-')">−</button>
+
+    <!-- Baris terakhir -->
+    <button class="btn ce" onclick="clearDisplay()">CE</button> <!-- Tombol hapus semua -->
+    <button class="btn" onclick="appendNumber('0')">0</button>
+    <button class="btn equal" onclick="calculate()">=</button>
+    <button class="btn operator" onclick="setOperator('+')">+</button>
+  </div>
+</div>
+
+<script>
+  // Variabel untuk simpan angka sekarang
+  let current = '';
+  // Variabel untuk simpan angka sebelumnya
+  let previous = '';
+  // Simpan operator yang dipilih (+, -, *, /)
+  let operator = null;
+
+  // Fungsi untuk tambahkan angka ke layar
+  function appendNumber(num) {
+    if (current === '0') current = '';  // kalo angka 0 dihapus dulu
+    current += num;                     // tambah angka ke string current
+    updateDisplay();                    // update tampilan
+  }
+
+  // Fungsi waktu tekan operator
+  function setOperator(op) {
+    if (current === '') return;        // kalo belum ada angka, jangan lanjut
+    if (previous !== '') calculate();  // kalo sudah ada angka sebelumnya, hitung dulu
+    operator = op;                     // simpan operator
+    previous = current;                // pindahkan current ke previous
+    current = '';                      // kosongkan current supaya bisa isi angka baru
+    console.log("Operator:", operator, "Previous:", previous);
+  }
+
+  // Fungsi untuk hitung hasil akhir
+  function calculate() {
+    let result = 0;
+    const prev = parseFloat(previous);  // ubah string jadi angka
+    const curr = parseFloat(current);
+    console.log("Hitung:", prev, operator, curr);
+
+    if (isNaN(prev) || isNaN(curr)) return; // kalo bukan angka, batal
+
+    // Cek jenis operator dan lakukan operasi
+    switch (operator) {
+      case '+': result = prev + curr; break;
+      case '-': result = prev - curr; break;
+      case '*': result = prev * curr; break;
+      case '/':
+        if (curr === 0) {
+          alert("Tidak bisa dibagi dengan nol."); // peringatan bagi 0
+          return;
+        }
+        result = prev / curr;
+        break;
+      default: return;
+    }
+
+    current = result.toString();  // simpan hasil ke current
+    operator = null;              // reset operator
+    previous = '';                // reset previous
+    updateDisplay();              // tampilkan hasil
+  }
+
+  // Fungsi untuk reset semua (waktu tekan CE)
+  function clearDisplay() {
+    current = '';
+    previous = '';
+    operator = null;
+    updateDisplay();
+  }
+
+  // Fungsi untuk update angka di layar
+  function updateDisplay() {
+    document.getElementById('display').innerText = current || '0';
+  }
+</script>
+
+</body>
+</html>

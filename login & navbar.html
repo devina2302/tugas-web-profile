@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>K-Pop Store</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #ffe0f0, #fff5f9);
+      margin: 0;
+    }
+    #login-section {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-image: url('th8.jpeg');
+      background-size: cover;
+      background-position: center;
+      animation: fadeIn 1.5s ease;
+    }
+    .form-box {
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 40px;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+      text-align: center;
+      animation: fadeIn 2s ease;
+    }
+    .form-box h2 {
+      font-family: 'Pacifico', cursive;
+      color: #ff1493;
+      margin-bottom: 10px;
+      font-size: 2em;
+    }
+    .form-box input {
+      width: 100%;
+      padding: 14px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    .form-box button {
+      width: 100%;
+      padding: 14px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 25px;
+      font-weight: bold;
+      font-size: 16px;
+      color: #fff;
+      background: linear-gradient(to right, #ff69b4, #ff1493);
+    }
+    .form-box button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 5px 20px rgba(255,105,180,0.5);
+    }
+    .toggle-btn {
+      background: none;
+      border: none;
+      color: #ff1493;
+      margin-top: 15px;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+    .msg { font-size: 0.9em; color: red; height: 18px; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    #home-section { display: none; }
+    .navbar { background-color: #ffb6c1; }
+    .navbar-brand, .nav-link { color: #fff !important; font-weight: bold; }
+    .cart-count {
+      background: #fff;
+      color: #ff69b4;
+      border-radius: 50%;
+      padding: 2px 6px;
+      font-size: 12px;
+    }
+    .product-card {
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
+      padding: 20px;
+      text-align: center;
+    }
+    .product-card:hover { transform: scale(1.03); }
+    .product-card img {
+      width: 100%; height: 250px; object-fit: cover;
+      border-radius: 10px;
+    }
+    .modal-header, .modal-footer { background: #ffe4ec; }
+    footer { background: #ffe4ec; padding: 20px; }
+  </style>
+</head>
+<body>
+
+  <!-- LOGIN -->
+  <div id="login-section">
+    <div class="form-box">
+      <h2 id="form-title">Daftar Akun Baru 💖</h2>
+      <div id="error" class="msg"></div>
+      <input type="text" id="username" placeholder="Username">
+      <input type="password" id="password" placeholder="Password">
+      <input type="email" id="email" placeholder="Email">
+      <button onclick="submitForm()">Daftar</button>
+      <button class="toggle-btn" onclick="toggleForm()">Sudah punya akun? Login di sini</button>
+    </div>
+  </div>
+
+  <audio id="clickSound" src="https://www.fesliyanstudios.com/play-mp3/387" preload="auto"></audio>
+
+  <!-- HOME -->
+  <div id="home-section">
+    <nav class="navbar navbar-expand-lg">
+      <a class="navbar-brand" href="#">K-Pop Store</a>
+      <form class="form-inline ml-3" onsubmit="event.preventDefault(); searchProduct();">
+        <input class="form-control mr-2" type="search" id="searchInput" placeholder="Cari produk...">
+        <button class="btn btn-outline-light" type="submit">Cari</button>
+      </form>
+      <div class="collapse navbar-collapse justify-content-end">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="#">Beranda</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Tentang</a></li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" data-toggle="modal" data-target="#cartModal">
+              🛒 <span class="cart-count" id="cart-count">0</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Banner -->
+    <div class="container mt-4">
+      <div class="jumbotron text-center" style="background: #fff0f6; border-radius: 20px;">
+        <h1 class="display-4" style="color: #ff1493;">Selamat Datang di K-Pop Store 💖</h1>
+        <p class="lead">Temukan koleksi K-Pop favoritmu mulai dari album, lightstick, hingga merchandise eksklusif!</p>
+        <hr class="my-4">
+        <p style="color:#777;">Jangan lewatkan diskon spesial bulan ini ✨</p>
+        <a class="btn btn-lg" style="background-color:#ff69b4; color:white;" href="#productList">Belanja Sekarang</a>
+      </div>
+    </div>
+
+    <!-- Kategori -->
+    <div class="container mb-4">
+      <h4 class="text-center mb-3">🎯 Kategori Produk</h4>
+      <div class="row text-center">
+        <div class="col-md-3 mb-2"><button class="btn btn-outline-danger w-100" onclick="filterProduct('lightstick')">Lightstick</button></div>
+        <div class="col-md-3 mb-2"><button class="btn btn-outline-danger w-100" onclick="filterProduct('album')">Album</button></div>
+        <div class="col-md-3 mb-2"><button class="btn btn-outline-danger w-100" onclick="filterProduct('merch')">Merchandise</button></div>
+        <div class="col-md-3 mb-2"><button class="btn btn-outline-danger w-100" onclick="renderProducts(produk)">Semua Produk</button></div>
+      </div>
+    </div>
+
+    <!-- Produk -->
+    <div class="container mt-3">
+      <h3 class="text-center mb-4">🎀 K-Pop Best Sellers 🎀</h3>
+      <div class="row" id="productList"></div>
+    </div>
+
+    <!-- Testimoni -->
+    <div class="container mt-5">
+      <h4 class="text-center">💬 Testimoni Penggemar</h4>
+      <div class="row justify-content-center mt-3">
+        <div class="col-md-4">
+          <div class="card shadow-sm p-3">
+            <p>"Barangnya asli dan cepat sampai! Aku cinta K-Pop Store 💕"</p>
+            <small>- @army_blink</small>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card shadow-sm p-3">
+            <p>"Lightstick-nya ori dan nyala keren banget! Sumpah puas 🥰"</p>
+            <small>- @seventeen_carats</small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center mt-5">
+      <p>© 2025 K-Pop Store. All Rights Reserved</p>
+      <p>Follow us: <a href="#" style="color:#ff1493;">Instagram</a> | <a href="#" style="color:#ff1493;">TikTok</a></p>
+    </footer>
+  </div>
+
+  <!-- Modal Keranjang -->
+  <div class="modal fade" id="cartModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header"><h5>Keranjang Belanja</h5><button class="close" data-dismiss="modal">&times;</button></div>
+        <div class="modal-body" id="cartItems"><p>Keranjang kosong.</p></div>
+        <div class="modal-footer">
+          <button class="btn btn-danger" onclick="clearCart()">Kosongkan</button>
+          <button class="btn btn-success" onclick="checkout()">Checkout</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    const produk = [
+  { nama: "Lightstick BTS", harga: 450000, img: "th10.jpeg", kategori: "lightstick" },
+  { nama: "Album BLACKPINK", harga: 250000, img: "th11.jpeg", kategori: "album" },
+  { nama: "T-Shirt EXO", harga: 150000, img: "th12.jpeg", kategori: "merch" },
+  { nama: "Poster TWICE", harga: 70000, img: "th13.jpeg", kategori: "merch" },
+  { nama: "Kalender SEVENTEEN", harga: 90000, img: "th14.jpeg", kategori: "merch" },
+  { nama: "Hoodie Stray Kids", harga: 300000, img: "th15.jpeg", kategori: "merch" },
+  { nama: "Album IVE - I'VE MINE", harga: 280000, img: "th16.jpeg", kategori: "album" },
+  { nama: "Lightstick IVE", harga: 430000, img: "th17.jpeg", kategori: "lightstick" },
+  { nama: "Album NewJeans - Get Up", harga: 270000, img: "th18.jpeg", kategori: "album" },
+  { nama: "Lightstick NewJeans", harga: 410000, img: "th20.jpeg", kategori: "lightstick" },
+  { nama: "Photocard ITZY", harga: 60000, img: "th19.jpeg", kategori: "merch" },
+  { nama: "Album NCT 127 - Fact Check", harga: 290000, img: "th22.jpeg", kategori: "album" },
+  { nama: "Lightstick NCT", harga: 400000, img: "th23.jpeg", kategori: "lightstick" },
+  { nama: "Kaos TXT", harga: 160000, img: "th24.jpeg", kategori: "merch" },
+  { nama: "Album ENHYPEN - Dark Blood", harga: 275000, img: "th25.jpeg", kategori: "album" },
+  { nama: "Lightstick ATEEZ", harga: 390000, img: "th26.jpeg", kategori: "lightstick" },
+  { nama: "Hoodie BTS", harga: 280000, img: "th28.jpeg", kategori: "merch" },
+  { nama: "Album LE SSERAFIM - Unforgiven", harga: 260000, img: "th27.jpeg", kategori: "album" }
+];
+
+    const keranjang = [];
+    let isLogin = false;
+
+    function toggleForm() {
+      isLogin = !isLogin;
+      document.getElementById("error").innerText = "";
+      const title = document.getElementById("form-title");
+      const email = document.getElementById("email");
+      const btn = document.querySelector(".form-box button");
+      const toggle = document.querySelector(".toggle-btn");
+      if (isLogin) {
+        title.innerText = "Login ke Akun Anda 💫";
+        email.style.display = "none";
+        btn.innerText = "Login";
+        toggle.innerText = "Belum punya akun? Daftar di sini";
+      } else {
+        title.innerText = "Daftar Akun Baru 💖";
+        email.style.display = "block";
+        btn.innerText = "Daftar";
+        toggle.innerText = "Sudah punya akun? Login di sini";
+      }
+    }
+
+  function submitForm() {
+    document.getElementById("clickSound").play();
+    const user = document.getElementById("username").value.trim();
+    const pass = document.getElementById("password").value;
+    const email = document.getElementById("email").value.trim();
+    const err = document.getElementById("error");
+
+    if (!user || !pass || (!isLogin && !email)) {
+      err.innerText = "Semua field harus diisi!";
+      return;
+    }
+
+    if (isLogin) {
+      const stored = JSON.parse(localStorage.getItem("akun_" + user));
+      if (stored && stored.password === pass) {
+        Swal.fire({
+          icon: 'success',
+          title: 'Login Berhasil!',
+          text: 'Selamat datang, ' + user + ' 💕',
+          confirmButtonColor: '#ff69b4',
+          background: '#fff0f6',
+          color: '#ff1493',
+        }).then(() => {
+          showHome();
+        });
+      } else {
+        err.innerText = "Username atau password salah!";
+      }
+    } else {
+      if (localStorage.getItem("akun_" + user)) {
+        err.innerText = "Username sudah terdaftar!";
+        return;
+      }
+      localStorage.setItem("akun_" + user, JSON.stringify({ password: pass, email }));
+      Swal.fire({
+        icon: 'success',
+        title: 'Pendaftaran Berhasil!',
+        text: 'Selamat datang, ' + user + ' 💖',
+        confirmButtonColor: '#ff69b4',
+        background: '#fff0f6',
+        color: '#ff1493',
+      }).then(() => {
+        showHome();
+      });
+    }
+  }
+  
+
+
+    function showHome() {
+      document.getElementById("login-section").style.display = "none";
+      document.getElementById("home-section").style.display = "block";
+      renderProducts(produk);
+    }
+
+    function renderProducts(list) {
+      const container = document.getElementById("productList");
+      container.innerHTML = "";
+      list.forEach((p, i) => {
+        container.innerHTML += `
+          <div class="col-md-4">
+            <div class="product-card">
+              <img src="${p.img}" alt="${p.nama}">
+              <h5>${p.nama}</h5>
+              <p>Rp ${p.harga.toLocaleString()}</p>
+              <button onclick="addToCart(${i})">Tambah ke Keranjang</button>
+            </div>
+          </div>`;
+      });
+    }
+
+    function addToCart(i) {
+      keranjang.push(produk[i]);
+      document.getElementById("cart-count").innerText = keranjang.length;
+      renderCart();
+    }
+
+    function renderCart() {
+      const body = document.getElementById("cartItems");
+      if (!keranjang.length) {
+        body.innerHTML = "<p>Keranjang kosong.</p>";
+        return;
+      }
+      body.innerHTML = "<ul class='list-group'>";
+      keranjang.forEach((item, idx) => {
+        body.innerHTML += `
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            ${item.nama} - Rp ${item.harga.toLocaleString()}
+            <button class="btn btn-sm btn-danger" onclick="removeItem(${idx})">Hapus</button>
+          </li>`;
+      });
+      body.innerHTML += "</ul>";
+    }
+
+    function removeItem(idx) {
+      keranjang.splice(idx, 1);
+      document.getElementById("cart-count").innerText = keranjang.length;
+      renderCart();
+    }
+
+    function clearCart() {
+      keranjang.length = 0;
+      document.getElementById("cart-count").innerText = 0;
+      renderCart();
+    }
+
+    function checkout() {
+      alert("Terima kasih sudah berbelanja 💖\nTotal item: " + keranjang.length);
+      clearCart();
+    }
+
+    function filterProduct(kategori) {
+      const hasil = produk.filter(p => p.kategori === kategori);
+      renderProducts(hasil);
+    }
+
+    function searchProduct() {
+      const q = document.getElementById("searchInput").value.toLowerCase();
+      renderProducts(produk.filter(p => p.nama.toLowerCase().includes(q)));
+    }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>

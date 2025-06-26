@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>K-pop Carousel</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background-color: #fff0f5;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar-custom {
+      background-color: #ff69b4;
+    }
+
+    .navbar-custom .navbar-brand,
+    .navbar-custom .nav-link {
+      color: #fff;
+    }
+
+    .navbar-custom .nav-link:hover {
+      color: #ffe4f2;
+    }
+
+    .carousel {
+      margin-bottom: 4rem;
+    }
+
+    .carousel-fade .carousel-item {
+      transition: opacity 1s ease-in-out;
+      opacity: 0;
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+    }
+
+    .carousel-fade .carousel-item.active {
+      opacity: 1;
+      position: relative;
+      z-index: 1;
+    }
+
+    .carousel-item {
+      height: 25rem;
+      background-size: cover;
+      background-position: center;
+      color: white;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+    }
+
+    .carousel-caption {
+      bottom: 3rem;
+    }
+
+    .carousel-caption h1 {
+      font-size: 2.5rem;
+      background: rgba(255, 182, 193, 0.6);
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      border-radius: 1rem;
+    }
+
+    .carousel-caption p {
+      font-size: 1.2rem;
+      background: rgba(255, 240, 245, 0.6);
+      display: inline-block;
+      padding: 0.3rem 0.8rem;
+      border-radius: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="#">UNKLAB</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="login user.html">Login</a></li>
+        <li class="nav-item active">
+          <a class="nav-link" href="curiculum.html">Curiculum</a></li>
+        <li class="nav-item active">
+          <a class="nav-link" href="pendaftara.html">Pendaftaran</a></li>
+      </ul>
+
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+
+<!-- Carousel -->
+<div id="myCarousel" class="carousel slide carousel-fade" data-ride="carousel" data-interval="false" style="margin-top: 56px;">
+  <ol class="carousel-indicators">
+    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#myCarousel" data-slide-to="1"></li>
+    <li data-target="#myCarousel" data-slide-to="2"></li>
+  </ol>
+
+  <div class="carousel-inner">
+    <div class="carousel-item active" style="background-image: url('th7.jpeg');">
+      <div class="container">
+        <div class="carousel-caption text-left">
+        </div>
+      </div>
+    </div>
+
+    <div class="carousel-item" style="background-image: url('th8.jpeg');">
+      <div class="container">
+        <div class="carousel-caption">
+        </div>
+      </div>
+    </div>
+
+    <div class="carousel-item" style="background-image: url('th9.jpeg');">
+      <div class="container">
+        <div class="carousel-caption text-right">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tombol Panah Carousel -->
+  <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
+<!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Form Validasi</title>
+</head>
+<body>
+
+<h3>oriana</h3>
+
+<form id="myForm">
+  <label>Nama:</label>
+  <input type="text" id="name"><br>
+
+  <label>Email:</label>
+  <input type="text" id="email"><br>
+
+  <label>Usia:</label>
+  <input type="text" id="age"><br>
+
+  <label>Jenis Kelamin:</label>
+  <select id="gender">
+    <option value="">-- Pilih --</option>
+    <option value="Laki-laki">Laki-laki</option>
+    <option value="Perempuan">Perempuan</option>
+  </select><br><br>
+
+  <button type="submit">submit</button>
+</form>
+
+<script>
+document.getElementById("myForm").addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  var name = document.getElementById("name").value.trim();
+  var email = document.getElementById("email").value.trim();
+  var age = document.getElementById("age").value.trim();
+  var gender = document.getElementById("gender").value;
+
+  if (name === "") {
+    alert("Nama tidak boleh kosong.");
+    return;
+  }
+
+  if (email === "") {
+    alert("Email tidak boleh kosong.");
+    return;
+  }
+
+  if (!email.includes("@") || !email.includes(".")) {
+    alert("Format email tidak valid.");
+    return;
+  }
+
+  if (age === "") {
+    alert("Usia tidak boleh kosong.");
+    return;
+  }
+
+  if (isNaN(age)) {
+    alert("Usia harus berupa angka.");
+    return;
+  }
+
+  if (gender === "") {
+    alert("Silakan pilih jenis kelamin.");
+    return;
+  }
+
+  alert(
+    "Form berhasil dikirim!\n" +
+    "Nama: " + name + "\n" +
+    "Email: " + email + "\n" +
+    "Usia: " + age + "\n" +
+    "Jenis Kelamin: " + gender
+  );
+});
+</script>
+
+</body>
+</html>
